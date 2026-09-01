@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
+const profileImage = `${import.meta.env.BASE_URL}img/profile.jpg`
+
 type ProjectType = 'PCB Design' | 'Software'
 
 type Project = {
@@ -12,7 +14,7 @@ type Project = {
   pdf: string
 }
 
-const projects: Project[] = [
+const projects = [
   {
     title: "Software Development Portfolio",
     type: "Software",
@@ -138,7 +140,7 @@ function App() {
           aria-label="S-Salam home"
         >
           <img
-            src={`${import.meta.env.BASE_URL}img/profile.jpg`}
+            src={profileImage}
             alt="S-Salam"
             className="brand-profile"
           />
