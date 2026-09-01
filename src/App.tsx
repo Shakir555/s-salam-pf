@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import profileImage from '/img/profile.jpg'
 
 type ProjectType = 'PCB Design' | 'Software'
 
@@ -15,22 +14,22 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: 'Software Development Portfolio',
-    type: 'Software',
+    title: "Software Development Portfolio",
+    type: "Software",
     description:
-      'A collection of my software development projects, applications, APIs and system development work.',
-    tags: ['React', 'TypeScript', 'API', 'Software'],
-    image: '/img/sw-pf.png',
-    pdf: '/docu/sw-pf.pdf',
+      "A collection of my software development projects, applications, APIs and system development work.",
+    tags: ["React", "TypeScript", "API", "Software"],
+    image: `${import.meta.env.BASE_URL}img/sw-pf.png`,
+    pdf: `${import.meta.env.BASE_URL}docu/sw-pf.pdf`,
   },
   {
-    title: 'PCB & Hardware Portfolio',
-    type: 'PCB Design',
+    title: "PCB & Hardware Portfolio",
+    type: "PCB Design",
     description:
-      'A collection of my PCB design, embedded systems and hardware engineering projects.',
-    tags: ['PCB Design', 'Embedded', 'Hardware', 'Electronics'],
-    image: '/img/pcb-pf.png',
-    pdf: '/docu/pcb-pf.pdf',
+      "A collection of my PCB design, embedded systems and hardware engineering projects.",
+    tags: ["PCB Design", "Embedded", "Hardware", "Electronics"],
+    image: `${import.meta.env.BASE_URL}img/pcb-pf.png`,
+    pdf: `${import.meta.env.BASE_URL}docu/pcb-pf.pdf`,
   },
 ]
 
@@ -139,7 +138,7 @@ function App() {
           aria-label="S-Salam home"
         >
           <img
-            src={profileImage}
+            src={`${import.meta.env.BASE_URL}img/profile.jpg`}
             alt="S-Salam"
             className="brand-profile"
           />
