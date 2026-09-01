@@ -1,0 +1,825 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
+:root {
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e8edf4;
+  --blue: #2563eb;
+  --red: #ef4444;
+  --purple: #7c3aed;
+  --soft: #f8fafc;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fff; color: var(--ink); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+.app-shell {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.header {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(232, 237, 244, .85);
+}
+
+.brand {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 8px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Profile image */
+.brand-profile {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* S-Salam text */
+.brand span {
+  position: relative;
+  z-index: 2;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Soft animated shine */
+.brand::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.55s ease;
+}
+
+/* Hover container */
+.brand:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12),
+    0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+/* Move shine across */
+.brand:hover::before {
+  left: 140%;
+}
+
+/* Profile hover */
+.brand:hover .brand-profile {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.15),
+    0 0 18px rgba(59, 130, 246, 0.35);
+}
+
+/* Text hover */
+.brand:hover span {
+  transform: translateX(2px);
+  color: #3b82f6;
+}
+
+/* Click effect */
+.brand:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.brand-mark {
+  width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center;
+  color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  box-shadow: 0 9px 24px rgba(37, 99, 235, .2);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav a {
+  position: relative;
+  padding: 9px 14px;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Animated underline */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: #3b82f6;
+  border-radius: 10px;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+/* Hover */
+.nav a:hover {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.1);
+}
+
+/* Underline expands */
+.nav a:hover::after {
+  width: 55%;
+}
+
+/* Click */
+.nav a:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.hero {
+  min-height: 650px;
+  padding: 95px 0 105px;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: var(--blue);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.hero h1, .section-heading h2, .contact-section h2 {
+  font-family: 'Manrope', sans-serif;
+  letter-spacing: -3.2px;
+  margin: 0;
+}
+
+.hero h1 { max-width: 680px; margin-top: 18px; font-size: clamp(52px, 6vw, 78px); line-height: 1.02; }
+.hero h1 span {
+  background: linear-gradient(90deg, var(--red), var(--blue));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-copy > p { max-width: 600px; color: var(--muted); font-size: 17px; line-height: 1.75; margin: 26px 0 0; }
+
+.hero-actions { display: flex; gap: 12px; margin-top: 32px; }
+.primary-button, .secondary-button {
+  min-height: 48px; padding: 0 18px; border-radius: 12px; display: inline-flex; align-items: center;
+  justify-content: center; gap: 24px; font-size: 13px; font-weight: 700; transition: .25s ease;
+}
+.primary-button { background: var(--ink); color: #fff; box-shadow: 0 13px 30px rgba(15, 23, 42, .14); }
+.secondary-button { border: 1px solid var(--line); background: #fff; color: #475569; }
+.primary-button:hover, .secondary-button:hover { transform: translateY(-2px); }
+
+/* Main hero artwork */
+.hero-art {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+/* Main card */
+.art-card-main {
+  position: relative;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 24px;
+  padding: 25px;
+  min-height: 250px;
+  /* Stronger 3D shadow */
+  box-shadow:
+    0 35px 70px rgba(0, 0, 0, 0.15),
+    0 15px 30px rgba(37, 99, 235, 0.10);
+  transform: rotate(-3deg) translateY(0);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Pop up when hovering */
+.art-card-main:hover {
+  transform:
+    rotate(0deg)
+    translateY(-15px)
+    scale(1.04);
+
+  box-shadow:
+    0 45px 90px rgba(0, 0, 0, 0.18),
+    0 25px 50px rgba(37, 99, 235, 0.16);
+}
+
+/* PCB + Code grid */
+.art-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+/* Individual tiles */
+.art-tile {
+  position: relative;
+  z-index: 6;
+
+  border-radius: 18px;
+  padding: 22px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Make tiles pop independently */
+.art-tile:hover {
+  transform: translateY(-10px) scale(1.05);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* PCB card */
+.pcb-tile {
+  background: linear-gradient(
+    145deg,
+    #ecfdf5,
+    #d1fae5
+  );
+
+  box-shadow:
+    0 12px 25px rgba(16, 185, 129, 0.12);
+}
+
+/* Coding card */
+.code-tile {
+  background: linear-gradient(
+    145deg,
+    #fee2e2,
+    #ffffff
+  );
+
+  box-shadow:
+    0 12px 25px rgba(37, 99, 235, 0.12);
+}
+
+/* Decorative glowing orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(3px);
+  z-index: 1;
+}
+
+.orb-one {
+  width: 170px;
+  height: 170px;
+
+  background: rgba(37, 99, 235, 0.15);
+
+  top: -30px;
+  right: -20px;
+}
+
+.orb-two {
+  width: 130px;
+  height: 130px;
+
+  background: rgba(239, 68, 68, 0.13);
+
+  bottom: -20px;
+  left: 10px;
+}
+
+.art-card-main {
+  animation: heroFloat 5s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(-1deg);
+  }
+}
+
+.art-card-main:hover {
+  animation-play-state: paused;
+
+  transform:
+    translateY(-15px)
+    rotate(0deg)
+    scale(1.04);
+}
+
+.portfolio-section { padding: 105px 0; border-top: 1px solid var(--line); }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 44px; }
+.section-heading h2 { font-size: clamp(38px, 4.5vw, 56px); margin-top: 14px; }
+.section-heading > p { max-width: 430px; margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+/* .project-card { border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: #fff; transition: .28s ease; } */
+/* .project-card:hover { transform: translateY(-5px); box-shadow: 0 24px 55px rgba(15,23,42,.08); } */
+.hardware-preview { background: linear-gradient(145deg, #f8fafc, #f0fdfa); }
+.software-preview { background: linear-gradient(145deg, #f8fafc, #eff6ff); }
+
+.mini-pcb {
+  width: 220px; height: 145px; border-radius: 16px; position: relative;
+  background: linear-gradient(135deg, #0f766e, #155e55); box-shadow: 0 20px 36px rgba(15,118,110,.18);
+}
+.mini-pcb::before, .mini-pcb::after { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; }
+.mini-pcb::after { inset: 30px 70px; border-radius: 5px; }
+.mini-chip { width: 62px; height: 50px; background: #111827; border-radius: 6px; position: absolute; left: 80px; top: 47px; z-index: 2; }
+.trace { position: absolute; height: 2px; background: rgba(250,204,21,.72); z-index: 3; }
+.trace-a { width: 66px; left: 28px; top: 72px; }
+.trace-b { width: 56px; right: 23px; top: 43px; transform: rotate(90deg); }
+.trace-c { width: 58px; left: 82px; bottom: 24px; }
+
+.mini-browser { width: 250px; height: 165px; background: #fff; border: 1px solid #dce4ef; border-radius: 13px; overflow: hidden; box-shadow: 0 20px 36px rgba(37,99,235,.1); }
+.browser-top { height: 29px; border-bottom: 1px solid #edf1f6; display: flex; align-items: center; gap: 5px; padding: 0 11px; }
+.browser-top i { width: 6px; height: 6px; border-radius: 50%; background: #cbd5e1; }
+.browser-body { padding: 19px; }
+.browser-body > span { display: block; width: 47%; height: 8px; border-radius: 10px; background: #dbeafe; }
+.browser-body > div { margin-top: 17px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.browser-body > div i { height: 38px; border-radius: 8px; background: #eff6ff; }
+.browser-body > b { display: block; margin-top: 11px; height: 46px; border-radius: 9px; background: linear-gradient(135deg, #f8fafc, #eef2ff); }
+
+.project-content { padding: 24px; }
+.project-type { font-size: 9px; text-transform: uppercase; letter-spacing: 1.3px; color: var(--blue); font-weight: 700; }
+.project-content h3 { font: 700 21px 'Manrope', sans-serif; margin: 10px 0 0; letter-spacing: -.5px; }
+.project-content > p { color: var(--muted); font-size: 13.5px; line-height: 1.7; margin: 12px 0 0; }
+.project-footer { margin-top: 25px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tags span { padding: 6px 9px; border-radius: 7px; background: #f8fafc; border: 1px solid #edf1f6; color: var(--muted); font-size: 9px; }
+.project-link { width: 37px; height: 37px; border: 1px solid var(--line); border-radius: 50%; background: #fff; cursor: pointer; transition: .2s ease; }
+.project-card:hover .project-link { background: var(--ink); color: #fff; }
+
+.contact-section {
+  margin: 10px 0 60px; min-height: 360px; border-radius: 28px; padding: 58px 62px;
+  background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  position: relative; overflow: hidden;
+}
+.contact-section::after { content: ''; position: absolute; width: 330px; height: 330px; border-radius: 50%; right: -90px; top: -120px; background: radial-gradient(circle, rgba(96,165,250,.27), rgba(124,58,237,.07) 55%, transparent 70%); }
+.contact-section > div { position: relative; z-index: 2; }
+.contact-section h2 { margin-top: 16px; font-size: clamp(38px, 5vw, 56px); }
+.contact-section p { max-width: 570px; color: #94a3b8; line-height: 1.7; font-size: 14px; margin: 17px 0 0; }
+.contact-button { position: relative; z-index: 2; flex-shrink: 0; padding: 14px 17px; border-radius: 12px; background: #fff; color: var(--ink); font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 22px; }
+
+.footer { min-height: 90px; border-top: 1px solid var(--line); color: #94a3b8; font-size: 11px; display: flex; justify-content: space-between; align-items: center; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 15px; padding-top: 10px; }
+  .hero-art { min-height: 390px; }
+  .section-heading { align-items: start; flex-direction: column; }
+  .project-grid { grid-template-columns: 1fr; }
+  .contact-section { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 620px) {
+  .app-shell { width: min(100% - 28px, 1180px); }
+  .header { height: 72px; }
+  .nav { gap: 15px; font-size: 12px; }
+  .brand > span:last-child { display: none; }
+  .hero { padding: 65px 0 75px; min-height: auto; }
+  .hero h1 { font-size: 47px; letter-spacing: -2.5px; }
+  .hero-copy > p { font-size: 15px; }
+  .hero-actions { align-items: stretch; flex-direction: column; }
+  .primary-button, .secondary-button { width: 100%; }
+  .hero-art { min-height: 340px; }
+  .art-card-main { width: 96%; }
+  .art-tile { height: 175px; }
+  .portfolio-section { padding: 78px 0; }
+  .mini-pcb { width: 190px; height: 130px; }
+  .mini-chip { left: 67px; top: 41px; }
+  .mini-browser { width: 210px; height: 145px; }
+  .contact-section { padding: 42px 27px; margin-bottom: 35px; }
+  .contact-section h2 { font-size: 39px; letter-spacing: -2px; }
+  .contact-button { width: 100%; justify-content: space-between; }
+}
+
+.project-preview {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.project-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+.project-card:hover .project-thumbnail {
+  transform: scale(1.05);
+}
+
+.project-number {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+
+  padding: 7px 10px;
+  border-radius: 8px;
+
+  color: #111827;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.preview-label {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+
+  padding: 7px 12px;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+
+  border-radius: 999px;
+
+  color: #111827;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 15px;
+
+  background: #111827;
+  color: white;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  transition: 0.25s ease;
+}
+
+.download-button:hover {
+  background: #ef4444;
+  transform: translateY(-2px);
+}
+
+
+/* ============================= */
+/* CLICKABLE HERO PORTFOLIO TILES */
+/* ============================= */
+
+.art-tile {
+  border: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.art-tile:hover {
+  transform: translateY(-5px) scale(1.03);
+}
+
+.art-tile:active {
+  transform: translateY(-2px) scale(0.96);
+}
+
+.art-tile:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 4px;
+}
+
+
+/* ============================= */
+/* PROJECT CARD */
+/* ============================= */
+
+.project-card {
+  position: relative;
+
+  border: 1px solid var(--line);
+  border-radius: 22px;
+
+  /* Important for the yellow animation */
+  overflow: visible;
+
+  background: #fff;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 24px 55px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ============================= */
+/* SELECTED PROJECT */
+/* ============================= */
+
+.project-highlight {
+  position: relative;
+  z-index: 10;
+
+  animation: selectedCardPop 0.45s ease;
+}
+
+
+/* ============================= */
+/* YELLOW ANIMATED RECTANGLE */
+/* ============================= */
+
+.project-highlight::after {
+  content: "";
+
+  position: absolute;
+
+  /*
+    Keep the yellow rectangle inside
+    the project card.
+  */
+  inset: -2px;
+
+  border-radius: 17px;
+
+  pointer-events: none;
+
+  z-index: 100;
+
+  /*
+    Four separate yellow lines:
+
+    1 = TOP
+    2 = RIGHT
+    3 = BOTTOM
+    4 = LEFT
+  */
+  background:
+    linear-gradient(#ffd84d, #ffd84d) top left,
+    linear-gradient(#ffd84d, #ffd84d) top right,
+    linear-gradient(#ffd84d, #ffd84d) bottom right,
+    linear-gradient(#ffd84d, #ffd84d) bottom left;
+
+  background-repeat: no-repeat;
+
+  background-size:
+    0% 4px,
+    4px 0%,
+    0% 4px,
+    4px 0%;
+
+  animation:
+    drawYellowSquare 0.8s ease-out forwards,
+    yellowGlow 0.7s ease-in-out 0.8s 2;
+}
+
+
+/* ============================= */
+/* DRAW YELLOW SQUARE */
+/* ============================= */
+
+@keyframes drawYellowSquare {
+
+  /*
+    Start with all lines hidden
+  */
+  0% {
+    background-size:
+      0% 4px,
+      4px 0%,
+      0% 4px,
+      4px 0%;
+  }
+
+
+  /*
+    Draw TOP
+  */
+  25% {
+    background-size:
+      100% 4px,
+      4px 0%,
+      0% 4px,
+      4px 0%;
+  }
+
+
+  /*
+    Draw RIGHT
+  */
+  50% {
+    background-size:
+      100% 4px,
+      4px 100%,
+      0% 4px,
+      4px 0%;
+  }
+
+
+  /*
+    Draw BOTTOM
+  */
+  75% {
+    background-size:
+      100% 4px,
+      4px 100%,
+      100% 4px,
+      4px 0%;
+  }
+
+
+  /*
+    Draw LEFT
+  */
+  100% {
+    background-size:
+      100% 4px,
+      4px 100%,
+      100% 4px,
+      4px 100%;
+  }
+}
+
+
+/* ============================= */
+/* YELLOW GLOW */
+/* ============================= */
+
+@keyframes yellowGlow {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 8px rgba(255, 216, 77, 0.30),
+      inset 0 0 16px rgba(255, 216, 77, 0.15);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 0 18px rgba(255, 216, 77, 0.90),
+      inset 0 0 35px rgba(255, 216, 77, 0.45);
+  }
+}
+
+
+/* ============================= */
+/* CARD POP WHEN SELECTED */
+/* ============================= */
+
+@keyframes selectedCardPop {
+
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.025);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* ============================= */
+/* PDF BUTTON AREA */
+/* ============================= */
+
+.pdf-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+.view-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 10px 16px;
+
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  border: 1px solid rgba(59, 130, 246, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.view-button:hover {
+  transform: translateY(-2px);
+
+  background: rgba(59, 130, 246, 0.08);
+}
+
+
+/* ============================= */
+/* ACCESSIBILITY */
+/* ============================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .art-tile,
+  .project-card {
+    transition: none;
+  }
+
+  .project-highlight,
+  .project-highlight::after {
+    animation: none;
+  }
+
+  /*
+    Still show yellow selection,
+    just without animation.
+  */
+  .project-highlight::after {
+    border: 4px solid #ffd84d;
+    background: none;
+  }
+}
